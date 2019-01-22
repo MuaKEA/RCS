@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <title>Training</title>
+    <title>kea.com.exam.demo.Model.Training</title>
 
 </head>
 <body>
@@ -24,9 +24,10 @@
         </thead>
         <tbody>
         <tr th:each="training:${trainings}">
-            <td th:text="${training.getDate()}"></td>
-            <td th:text="${training.getEndTime()}"></td>
-            <td th:text="${training.getNote()}"></td>
+            <td th:text="${training.date}"></td>
+            <td th:text="${training.startime}"></td>
+            <td th:text="${training.endTime}"></td>
+            <td th:text="${training.note}"></td>
             <td>
                 <a th:href="'/training_edit/'+${training.getId()}"><button class="btn-warning" style="width:40%">Rediger</button></a>
                 <a th:href="'/training_delete/'+${training.getId()}"><button class="btn-danger" style="width:40%">Slet</button></a>

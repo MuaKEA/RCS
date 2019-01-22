@@ -1,8 +1,8 @@
-package kea.com.exam.demo;
+package kea.com.exam.demo.Controller;
 
 
-import com.example.demo.model.DBconnection;
-import com.example.demo.model.Training;
+import kea.com.exam.demo.Model.DBconnection;
+import kea.com.exam.demo.Model.Training;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +29,7 @@ public class TrainingController {
     }
 
     /*
-     * Creates a new Training object for creating a training
+     * Creates a new kea.com.exam.demo.Model.Training object for creating a training
      */
     @GetMapping("/training_create")
     public String createTraining(Model model){
@@ -100,17 +100,18 @@ public class TrainingController {
         try {
             // Execute sql code
             Statement s = con.createStatement();
-            ResultSet resultSet = s.executeQuery("SELECT * FROM rcs1.`Training`");
+            ResultSet resultSet = s.executeQuery("SELECT * FROM trainings");
 
-            // Iterate over each row in DB and create a corresponding Training object and pass it to Array.
+            // Iterate over each row in DB and create a corresponding kea.com.extam.demo.Model.Training object and pass it to Array.
             while (resultSet.next()) {
                 try {
                     // Create training object for each row
                     Training training= new Training();
                     training.setId(resultSet.getInt("id"));
-                    training.setDate(resultSet.getDate("start_date"));
-                    training.setEndTime(resultSet.getDate("end_date"));
-                    training.setNote(resultSet.getString("Noter"));
+                    training.setDate(resultSet.getDate("training_Date"));
+                    training.setEndTime(resultSet.getString("training_end"));
+                    training.setStartime(resultSet.getString("training_start"));
+                    training.setNote(resultSet.getString("training_note"));
 
                     // Add training to the collection
                     trainings.add(training);
@@ -143,15 +144,16 @@ public class TrainingController {
         try {
             // Execute sql code
             Statement s = con.createStatement();
-            ResultSet resultSet = s.executeQuery("SELECT * FROM rcs1.`Training` WHERE id = " + id);
+            ResultSet resultSet = s.executeQuery("SELECT * FROM trainings WHERE id = " + id);
             resultSet.next();
             try {
                 // Add values from the database to the training objebt
                 training= new Training();
                 training.setId(resultSet.getInt("id"));
-                training.setDate(resultSet.getDate("start_date"));
-                training.setEndTime(resultSet.getDate("end_date"));
-                training.setNote(resultSet.getString("Noter"));
+                training.setDate(resultSet.getDate("training_Date"));
+                training.setEndTime(resultSet.getString("training_end"));
+                training.setStartime(resultSet.getString("training_start"));
+                training.setNote(resultSet.getString("training_note"));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -176,11 +178,12 @@ public class TrainingController {
             // Prepare sql command by using prepared statement
             PreparedStatement preparedStatement1 = null;
 
-            preparedStatement1 = con.prepareStatement("INSERT INTO rcs1.`Training`(start_date, end_date, Noter) VALUES(?,?,?)");
+            preparedStatement1 = con.prepareStatement("INSERT INTO trainings (training_end, training_start, training_note,training_Date) VALUES(?,?,?,?)");
 
-            preparedStatement1.setDate(1, new Date(training.getDate().getTime()));
-            preparedStatement1.setDate(2, new Date(training.getEndTime().getTime()));
+            preparedStatement1.setString(1,training.getEndTime());
+            preparedStatement1.setString(2, training.getStartime());
             preparedStatement1.setString(3, training.getNote());
+            preparedStatement1.setDate(4, new Date(training.getDate().getTime()));
 
             // Execute command
             preparedStatement1.executeUpdate();
@@ -201,11 +204,12 @@ public class TrainingController {
         try {
             // Prepare sql command by using prepared statement
             PreparedStatement preparedStatement1 = null;
-            preparedStatement1 = con.prepareStatement("UPDATE rcs1.`Training` SET start_date= ?, end_date= ?, Noter= ?, WHERE id = ?");
-            preparedStatement1.setDate(1, new Date(training.getDate().getTime()));
-            preparedStatement1.setDate(2, new Date(training.getEndTime().getTime()));
+            preparedStatement1 = con.prepareStatement("UPDATE trainings SET training_end=?, training_start=?, training_note=?,training_Date=? WHERE id = ?");
+            preparedStatement1.setString(1, training.getEndTime());
+            preparedStatement1.setString(2, training.getStartime());
             preparedStatement1.setString(3, training.getNote());
-            preparedStatement1.setInt(4,training.getId() );
+            preparedStatement1.setDate(4, new Date( training.getDate().getTime()));
+            preparedStatement1.setInt(5,training.getId());
 
 
             preparedStatement1.executeUpdate();
@@ -225,7 +229,7 @@ public class TrainingController {
         try {
             // Prepare sql command
             PreparedStatement preparedStatement1 = null;
-            preparedStatement1 = con.prepareStatement("DELETE FROM rcs1.`Training` WHERE id = ?");
+            preparedStatement1 = con.prepareStatement("DELETE FROM trainings WHERE id = ?");
             preparedStatement1.setInt(1,id);
 
             // Execute command

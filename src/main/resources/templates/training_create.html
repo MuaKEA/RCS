@@ -10,15 +10,14 @@
     <h1>Tilføj træning</h1>
     <form method="post" th:action="@{/training_create}" >
 
-        <p>Start tid</p>
+        <label>Dato</label>
         <input type="date" th:field="${training.date}"/>
-
-        <p>Slut tid</p>
-
-        <input type="date" th:field="${training.endTime}"/>
-
-        <p>Note</p>
-        <input type="text" th:field="${training.note}"/>
+        <label>Start tid</label>
+        <input type="time" th:field="${training.startime}"/>
+        <label>Slut tid</label>
+        <input type="time" th:field="${training.endTime}"/>
+        <label>Note</label>
+        <textarea type="text" th:field="${training.note}"></textarea>
 
 
         <input type="submit" class="btn-primary" value="Gem"/>

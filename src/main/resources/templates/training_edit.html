@@ -10,18 +10,21 @@
     <h1>Tilføj træning</h1>
     <form method="post" th:action="@{/training_edit}" th:object="${training}">
 
-        <p>ID</p>
+        <label>ID</label>
         <input type="number" th:field="${training.id}" readonly="readonly" />
 
-        <p>Dato</p>
+        <label>Dato</label>
         <input type="date" th:field="${training.date}"/>
 
-        <p>Start tid</p>
-        <input type="date" th:field="${training.endTime}"/>
+        <label>Start tid</label>
+        <input type="time" th:field="${training.startime}"/>
 
-        <p>Slut tid</p>
+        <label>Slut tid</label>
 
-        <input type="number" th:field="${training.note}"/>
+        <input type="time" th:field="${training.endTime}"/>
+
+        <label>noter</label>
+        <textarea type="time" th:field="${training.note}"></textarea>
 
 
 

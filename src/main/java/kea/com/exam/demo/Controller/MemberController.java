@@ -1,5 +1,7 @@
-import com.example.demo.model.DBconnection;
-import com.example.demo.model.Member;
+package kea.com.exam.demo.Controller;
+
+import kea.com.exam.demo.Model.DBconnection;
+import kea.com.exam.demo.Model.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

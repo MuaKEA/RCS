@@ -1,3 +1,5 @@
+package kea.com.exam.demo.Model;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -6,18 +8,19 @@ public class Training {
     private int id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date endTime;
+    private String endTime;
+    private String startime;
     private String note;
 
-    public Training(){
+    public Training() {
 
     }
 
-    public Training(int id, Date date, Date endTime, String note) {
+    public Training(int id, Date date, String endTime, String startime, String note) {
         this.id = id;
         this.date = date;
         this.endTime = endTime;
+        this.startime = startime;
         this.note = note;
     }
 
@@ -37,12 +40,20 @@ public class Training {
         this.date = date;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public String getStartime() {
+        return startime;
+    }
+
+    public void setStartime(String startime) {
+        this.startime = startime;
     }
 
     public String getNote() {
@@ -53,3 +64,5 @@ public class Training {
         this.note = note;
     }
 }
+
+

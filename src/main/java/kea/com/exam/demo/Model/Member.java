@@ -1,3 +1,5 @@
+package kea.com.exam.demo.Model;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 
