@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>showmember</title>
+</head>
+<body>
+<h1>Vis medlemmer</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Fornavn</th>
+        <th>Efternavn</th>
+        <th>Cpr</th>
+        <th>Adresse</th>
+        <th>Tlfnummer</th>
+        <th>Email</th>
+
+    </tr>
+    <tr th:each="medlem: ${members}">
+        <td th:text="${medlem.memberId}" />
+        <td th:text="${medlem.FirstName}"/>
+        <td th:text="${medlem.LastName}"/>
+        <td th:text="${medlem.CPR}"/>
+        <td th:text="${medlem.Adress}"/>
+        <td th:text="${medlem.Phone}"/>
+        <td th:text="${medlem.Email}"/>
+        <td><a th:href="'/deletemember/'+${medlem.memberId}" onclick="return confirm('Er du sikker?');">Slet</a></td>
+    </tr>
+</table>
+</body>
+
+
+</body>
+</html>

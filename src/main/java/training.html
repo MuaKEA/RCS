@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <title>Training</title>
+
+</head>
+<body>
+<div class="container">
+
+    <h1>Træning</h1>
+    <h3>Trænings plan</h3>
+
+    <a href="training_create"><button class="btn-primary">Tilføj træning</button> </a>
+    <table class="table">
+        <thead style="background:lightblue">
+        <tr>
+            <th>Dato</th>
+            <th>Start tid</th>
+            <th>Slut tid</th>
+            <th>Note</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="training:${trainings}">
+            <td th:text="${training.getDate()}"></td>
+            <td th:text="${training.getEndTime()}"></td>
+            <td th:text="${training.getNote()}"></td>
+            <td>
+                <a th:href="'/training_edit/'+${training.getId()}"><button class="btn-warning" style="width:40%">Rediger</button></a>
+                <a th:href="'/training_delete/'+${training.getId()}"><button class="btn-danger" style="width:40%">Slet</button></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <h3><a href="/">Tilbage</a></h3>
+</div>
+</body>
+</html>

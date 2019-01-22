@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <meta charset="UTF-8">
+    <title>Tilføj træning</title>
+</head>
+<body>
+<div class="container">
+    <h1>Tilføj træning</h1>
+    <form method="post" th:action="@{/training_create}" >
+
+        <p>Start tid</p>
+        <input type="date" th:field="${training.date}"/>
+
+        <p>Slut tid</p>
+
+        <input type="date" th:field="${training.endTime}"/>
+
+        <p>Note</p>
+        <input type="text" th:field="${training.note}"/>
+
+
+        <input type="submit" class="btn-primary" value="Gem"/>
+
+    </form>
+
+
+    <a href="/competitions"><button class="btn-primary " >Annuller</button></a>
+</div>
+
+</body>
+</html>

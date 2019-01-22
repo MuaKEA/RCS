@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <meta charset="UTF-8">
+    <title>Slet stævne</title>
+</head>
+<body>
+
+<form method="post" th:action="@{/training_delete}">
+    <h1 style="text-align: center;">Er du sikker på du vil slette træningen?</h1>
+    <hr />
+
+
+    <input class="btn-warning " type="submit"  value="Gem"/>
+
+</form>
+<a href="/training"><button class="btn-primary " >Annuller</button></a>
+
+
+</body>
+</html>
